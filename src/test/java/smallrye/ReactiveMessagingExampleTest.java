@@ -15,7 +15,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@QuarkusTest
 public class ReactiveMessagingExampleTest {
 	// 1. Switch the channels to the in-memory connector:
 	@BeforeAll
@@ -33,6 +32,7 @@ public class ReactiveMessagingExampleTest {
 	// 3. Inject the in-memory connector in your test,
 	// or use the bean manager to retrieve the instance
 	@Inject
+	@Any
 	InMemoryConnector connector;
 
 	@Test
@@ -52,6 +52,5 @@ public class ReactiveMessagingExampleTest {
 		// 7. Check you have receives the expected messages
 		List<? extends Message<Integer>> received = results.received();
 		assertThat(received).hasSize(3);
-
 	}
 }
